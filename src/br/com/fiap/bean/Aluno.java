@@ -41,7 +41,7 @@ public class Aluno {
         return registroMatricula;
     }
 
-    // Setter com try-catch e validação de regra de negócio
+    // Setter com validação de regra de negócio
     public void setRegistroMatricula(int registroMatricula) {
         if (registroMatricula >= 80000 && registroMatricula <= 599999) {
             this.registroMatricula = registroMatricula;
@@ -55,7 +55,7 @@ public class Aluno {
         return dataDeNascimento;
     }
 
-    // Setter com try-catch e validação de regra de negócio
+    // Setter com validação de regra de negócio
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
         LocalDate dataMinima = LocalDate.of(1960, 1, 1);
         LocalDate dataAtual = LocalDate.now();

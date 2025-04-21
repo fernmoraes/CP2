@@ -22,8 +22,8 @@ public class Aluno {
     // Construtor com parâmetros: já cria o objeto com os dados
     public Aluno(String nome, int registroMatricula, LocalDate dataDeNascimento) {
         setNomeCompleto(nome);
-        setRegistroMatricula(registroMatricula); // Aplica a regra de RM
-        setDataDeNascimento(dataDeNascimento);   // Aplica a regra da data
+        setRegistroMatricula(registroMatricula);
+        setDataDeNascimento(dataDeNascimento);
     }
 
     // Getter do nome
@@ -41,13 +41,16 @@ public class Aluno {
         return registroMatricula;
     }
 
-    // Setter com validação da regra de negócio
+    // Setter com try-catch e validação de regra de negócio
     public void setRegistroMatricula(int registroMatricula) {
-        if (registroMatricula >= 80000 && registroMatricula <= 599999) {
-            this.registroMatricula = registroMatricula;
-        } else {
-            // Se o RM estiver fora da faixa, lança um erro
-            throw new IllegalArgumentException("RM inválido. Deve estar entre 80000 e 599999.");
+        try {
+            if (registroMatricula >= 80000 && registroMatricula <= 599999) {
+                this.registroMatricula = registroMatricula;
+            } else {
+                throw new IllegalArgumentException("RM inválido. Deve estar entre 80000 e 599999.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro ao definir RM: " + e.getMessage());
         }
     }
 
@@ -56,16 +59,19 @@ public class Aluno {
         return dataDeNascimento;
     }
 
-    // Setter com validação da data (entre 01/01/1960 e hoje)
+    // Setter com try-catch e validação de regra de negócio
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        LocalDate dataMin = LocalDate.of(1960, 1, 1); // Data mínima permitida
-        LocalDate dataAtual = LocalDate.now(); // Data atual do sistema
+        LocalDate dataMinima = LocalDate.parse("1960-01-01");
+        LocalDate dataAtual = LocalDate.now();
 
-        if ((dataDeNascimento.isEqual(dataMin) || dataDeNascimento.isAfter(dataMin)) &&
-                (dataDeNascimento.isBefore(dataAtual) || dataDeNascimento.isEqual(dataAtual))) {
-            this.dataDeNascimento = dataDeNascimento;
-        } else {
-            throw new IllegalArgumentException("Data de nascimento inválida. Deve estar entre 01/01/1960 e hoje.");
+        try {
+            if (dataDeNascimento.isBefore(dataMinima) || dataDeNascimento.isAfter(dataAtual)) {
+                throw new Exception("Data de Nascimento deve ser entre 01/01/1960 e a data atual.");
+            } else {
+                this.dataDeNascimento = dataDeNascimento;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

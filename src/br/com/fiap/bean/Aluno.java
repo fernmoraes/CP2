@@ -43,14 +43,10 @@ public class Aluno {
 
     // Setter com try-catch e validação de regra de negócio
     public void setRegistroMatricula(int registroMatricula) {
-        try {
-            if (registroMatricula >= 80000 && registroMatricula <= 599999) {
-                this.registroMatricula = registroMatricula;
-            } else {
-                throw new IllegalArgumentException("RM inválido. Deve estar entre 80000 e 599999.");
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("Erro ao definir RM: " + e.getMessage());
+        if (registroMatricula >= 80000 && registroMatricula <= 599999) {
+            this.registroMatricula = registroMatricula;
+        } else {
+            throw new IllegalArgumentException("RM inválido. Deve estar entre 80000 e 599999.");
         }
     }
 
@@ -61,17 +57,13 @@ public class Aluno {
 
     // Setter com try-catch e validação de regra de negócio
     public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        LocalDate dataMinima = LocalDate.parse("1960-01-01");
+        LocalDate dataMinima = LocalDate.of(1960, 1, 1);
         LocalDate dataAtual = LocalDate.now();
 
-        try {
-            if (dataDeNascimento.isBefore(dataMinima) || dataDeNascimento.isAfter(dataAtual)) {
-                throw new Exception("Data de Nascimento deve ser entre 01/01/1960 e a data atual.");
-            } else {
-                this.dataDeNascimento = dataDeNascimento;
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        if (dataDeNascimento.isBefore(dataMinima) || dataDeNascimento.isAfter(dataAtual)) {
+            throw new IllegalArgumentException("Data de Nascimento deve ser entre 01/01/1960 e a data atual.");
+        } else {
+            this.dataDeNascimento = dataDeNascimento;
         }
     }
 

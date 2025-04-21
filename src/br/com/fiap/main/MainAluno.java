@@ -17,7 +17,7 @@ public class MainAluno {
         // Define o formato da data que será digitada pelo usuário (dia/mês/ano)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Instancia dois alunos com o construtor com parâmetros (dados fixos do grupo)
+        // Instancia três alunos com o construtor com parâmetros (dados fixos do grupo)
         Aluno aluno1 = new Aluno("Fernando Navajas", 555080, LocalDate.of(2004, 12, 31));
         Aluno aluno2 = new Aluno("José Guilherme", 557274, LocalDate.of(2006, 6, 17));
         Aluno aluno3 = new Aluno("Lucas Feliciano", 557261, LocalDate.of(2003, 5, 7));
@@ -27,7 +27,7 @@ public class MainAluno {
         Aluno aluno5 = new Aluno();
 
         try {
-            // Coleta de dados do aluno 3
+            // Coleta de dados do aluno 4
             String nome4 = JOptionPane.showInputDialog("Digite o nome do Aluno 4:");
             int rm4 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 4 (entre 80000 e 599999):"));
             String data4 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");
@@ -37,7 +37,7 @@ public class MainAluno {
             aluno4.setRegistroMatricula(rm4); // Valida e define RM
             aluno4.setDataDeNascimento(nascimento4); // Valida e define a data
 
-            // Coleta de dados do aluno 4
+            // Coleta de dados do aluno 5
             String nome5 = JOptionPane.showInputDialog("Digite o nome do Aluno 5:");
             int rm5 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 5 (entre 80000 e 599999):"));
             String data5 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");

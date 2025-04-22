@@ -4,40 +4,35 @@
     José Guilherme Sipaúba Costa RM557274;
     Lucas Feliciano RM557261;
 */
-package br.com.fiap.main; // Pacote principal da aplicação
+package br.com.fiap.main;
 
-// Importações necessárias
-import br.com.fiap.bean.Aluno; // Importa a classe Aluno da pasta bean
-import javax.swing.*; // Importa JOptionPane para entrada/saída de dados
-import java.time.LocalDate; // Para manipular datas
-import java.time.format.DateTimeFormatter; // Para formatar a data recebida
+import br.com.fiap.bean.Aluno;
+import javax.swing.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MainAluno {
     public static void main(String[] args) {
-        // Define o formato da data que será digitada pelo usuário (dia/mês/ano)
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Instancia três alunos com o construtor com parâmetros (dados fixos do grupo)
         Aluno aluno1 = new Aluno("Fernando Navajas", 555080, LocalDate.of(2004, 12, 31));
         Aluno aluno2 = new Aluno("José Guilherme", 557274, LocalDate.of(2006, 6, 17));
         Aluno aluno3 = new Aluno("Lucas Feliciano", 557261, LocalDate.of(2003, 5, 7));
-
-        // Instancia dois alunos com o construtor vazio (serão preenchidos via JOptionPane)
         Aluno aluno4 = new Aluno();
         Aluno aluno5 = new Aluno();
 
         try {
-            // Coleta de dados do aluno 4
+            // Coleta de dados - aluno 4
             String nome4 = JOptionPane.showInputDialog("Digite o nome do Aluno 4:");
             int rm4 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 4 (entre 80000 e 599999):"));
             String data4 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");
-            LocalDate nascimento4 = LocalDate.parse(data4, formatter); // Converte String em LocalDate
+            LocalDate nascimento4 = LocalDate.parse(data4, formatter);
 
-            aluno4.setNomeCompleto(nome4); // Define nome
-            aluno4.setRegistroMatricula(rm4); // Valida e define RM
-            aluno4.setDataDeNascimento(nascimento4); // Valida e define a data
+            aluno4.setNomeCompleto(nome4);
+            aluno4.setRegistroMatricula(rm4);
+            aluno4.setDataDeNascimento(nascimento4);
 
-            // Coleta de dados do aluno 5
+            // Coleta de dados - aluno 5
             String nome5 = JOptionPane.showInputDialog("Digite o nome do Aluno 5:");
             int rm5 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 5 (entre 80000 e 599999):"));
             String data5 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");
@@ -47,26 +42,37 @@ public class MainAluno {
             aluno5.setRegistroMatricula(rm5);
             aluno5.setDataDeNascimento(nascimento5);
 
-            // Obtém a data atual do sistema (não usada diretamente aqui, mas pode ser útil)
-            LocalDate dataAtual = LocalDate.now();
+            // Construção da mensagem com todos os alunos
+            String mensagemFinal =
+                    "ALUNO 1\n" +
+                            "RM: " + aluno1.getRegistroMatricula() + "\n" +
+                            "Nome: " + aluno1.getNomeCompleto() + "\n" +
+                            "Idade: " + aluno1.calcularIdadeCompleta() + "\n\n" +
 
-            // StringBuilder para montar a mensagem com os dados dos alunos
-            StringBuilder mensagem = new StringBuilder();
-            Aluno[] alunos = {aluno1, aluno2, aluno3, aluno4, aluno5};
+                            "ALUNO 2\n" +
+                            "RM: " + aluno2.getRegistroMatricula() + "\n" +
+                            "Nome: " + aluno2.getNomeCompleto() + "\n" +
+                            "Idade: " + aluno2.calcularIdadeCompleta() + "\n\n" +
 
-            // Percorre o vetor de alunos e monta a mensagem formatada
-            for (Aluno aluno : alunos) {
-                mensagem.append(String.format("RM: %d\nNome: %s\nIdade: %s\n\n",
-                        aluno.getRegistroMatricula(),
-                        aluno.getNomeCompleto(),
-                        aluno.calcularIdadeCompleta()));
-            }
+                            "ALUNO 3\n" +
+                            "RM: " + aluno3.getRegistroMatricula() + "\n" +
+                            "Nome: " + aluno3.getNomeCompleto() + "\n" +
+                            "Idade: " + aluno3.calcularIdadeCompleta() + "\n\n" +
 
-            // Exibe a mensagem no JOptionPane
-            JOptionPane.showMessageDialog(null, mensagem.toString());
+                            "ALUNO 4\n" +
+                            "RM: " + aluno4.getRegistroMatricula() + "\n" +
+                            "Nome: " + aluno4.getNomeCompleto() + "\n" +
+                            "Idade: " + aluno4.calcularIdadeCompleta() + "\n\n" +
+
+                            "ALUNO 5\n" +
+                            "RM: " + aluno5.getRegistroMatricula() + "\n" +
+                            "Nome: " + aluno5.getNomeCompleto() + "\n" +
+                            "Idade: " + aluno5.calcularIdadeCompleta();
+
+            // Exibir tudo de uma vez
+            JOptionPane.showMessageDialog(null, mensagemFinal);
 
         } catch (Exception e) {
-            // Captura qualquer erro e mostra a mensagem
             JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
         }
     }

@@ -69,7 +69,7 @@ public class Aluno {
 
     // Metodo para calcular idade completa em anos, meses e dias
     public String calcularIdadeCompleta() {
-        Period idade = Period.between(dataDeNascimento, LocalDate.now());
+        Period idade = Period.between(this.dataDeNascimento, LocalDate.now());
         return String.format("%d anos, %d meses e %d dias", idade.getYears(), idade.getMonths(), idade.getDays());
     }
 }

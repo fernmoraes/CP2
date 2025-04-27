@@ -6,6 +6,7 @@
 */
 package br.com.fiap.bean; // Pacote de entidades ("bean" = objeto de negócio)
 
+import javax.swing.*;
 import java.time.LocalDate; // Para trabalhar com datas
 import java.time.Period; // Para calcular diferença entre datas
 
@@ -43,10 +44,15 @@ public class Aluno {
 
     // Setter com validação de regra de negócio
     public void setRegistroMatricula(int registroMatricula) {
-        if (registroMatricula >= 80000 && registroMatricula <= 599999) {
-            this.registroMatricula = registroMatricula;
-        } else {
-            throw new IllegalArgumentException("RM inválido. Deve estar entre 80000 e 599999.");
+        try {
+            if (registroMatricula >= 80000 && registroMatricula <= 599999) {
+                this.registroMatricula = registroMatricula;
+            } else {
+                throw new Exception("RM inválido. Deve estar entre 80000 e 599999.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
         }
     }
 
@@ -60,10 +66,15 @@ public class Aluno {
         LocalDate dataMinima = LocalDate.of(1960, 1, 1);
         LocalDate dataAtual = LocalDate.now();
 
-        if (dataDeNascimento.isBefore(dataMinima) || dataDeNascimento.isAfter(dataAtual)) {
-            throw new IllegalArgumentException("Data de Nascimento deve ser entre 01/01/1960 e a data atual.");
-        } else {
-            this.dataDeNascimento = dataDeNascimento;
+        try {
+            if (dataDeNascimento.isBefore(dataMinima) || dataDeNascimento.isAfter(dataAtual)) {
+                throw new Exception("Data de Nascimento deve ser entre 01/01/1960 e a data atual.");
+            } else {
+                this.dataDeNascimento = dataDeNascimento;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            System.exit(0);
         }
     }
 

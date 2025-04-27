@@ -17,11 +17,20 @@ public class MainAluno {
 
         Aluno aluno1 = new Aluno("Fernando Navajas", 555080, LocalDate.of(2004, 12, 31));
         Aluno aluno2 = new Aluno("José Guilherme", 557274, LocalDate.of(2006, 6, 17));
-        Aluno aluno3 = new Aluno("Lucas Feliciano", 557261, LocalDate.of(2003, 5, 7));
+        Aluno aluno3 = new Aluno();
         Aluno aluno4 = new Aluno();
-        Aluno aluno5 = new Aluno();
 
         try {
+            // Coleta de dados - aluno 3
+            String nome3 = JOptionPane.showInputDialog("Digite o nome do Aluno 3:");
+            int rm3 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 3 (entre 80000 e 599999):"));
+            String data3 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");
+            LocalDate nascimento3 = LocalDate.parse(data3, formatter);
+
+            aluno3.setNomeCompleto(nome3);
+            aluno3.setRegistroMatricula(rm3);
+            aluno3.setDataDeNascimento(nascimento3);
+
             // Coleta de dados - aluno 4
             String nome4 = JOptionPane.showInputDialog("Digite o nome do Aluno 4:");
             int rm4 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 4 (entre 80000 e 599999):"));
@@ -31,16 +40,6 @@ public class MainAluno {
             aluno4.setNomeCompleto(nome4);
             aluno4.setRegistroMatricula(rm4);
             aluno4.setDataDeNascimento(nascimento4);
-
-            // Coleta de dados - aluno 5
-            String nome5 = JOptionPane.showInputDialog("Digite o nome do Aluno 5:");
-            int rm5 = Integer.parseInt(JOptionPane.showInputDialog("Digite o RM do Aluno 5 (entre 80000 e 599999):"));
-            String data5 = JOptionPane.showInputDialog("Digite a data de nascimento (dd/MM/yyyy):");
-            LocalDate nascimento5 = LocalDate.parse(data5, formatter);
-
-            aluno5.setNomeCompleto(nome5);
-            aluno5.setRegistroMatricula(rm5);
-            aluno5.setDataDeNascimento(nascimento5);
 
             // Construção da mensagem com todos os alunos
             String mensagemFinal =
@@ -62,12 +61,7 @@ public class MainAluno {
                             "ALUNO 4\n" +
                             "RM: " + aluno4.getRegistroMatricula() + "\n" +
                             "Nome: " + aluno4.getNomeCompleto() + "\n" +
-                            "Idade: " + aluno4.calcularIdadeCompleta() + "\n\n" +
-
-                            "ALUNO 5\n" +
-                            "RM: " + aluno5.getRegistroMatricula() + "\n" +
-                            "Nome: " + aluno5.getNomeCompleto() + "\n" +
-                            "Idade: " + aluno5.calcularIdadeCompleta();
+                            "Idade: " + aluno4.calcularIdadeCompleta();
 
             // Exibir tudo de uma vez
             JOptionPane.showMessageDialog(null, mensagemFinal);

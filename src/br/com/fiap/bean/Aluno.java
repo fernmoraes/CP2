@@ -3,6 +3,7 @@
     Fernando Navajas Moraes RM555080;
     José Guilherme Sipaúba Costa RM557274;
     Lucas Feliciano RM557261;
+    João Pedro de Soula Lopes RM557993;
 */
 package br.com.fiap.bean; // Pacote de entidades ("bean" = objeto de negócio)
 
